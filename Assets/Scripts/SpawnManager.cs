@@ -8,11 +8,15 @@ public class SpawnManager : MonoBehaviour
     private GameObject enemyPrefab;
     [SerializeField]
     private GameObject enemyContainer;
+    [SerializeField]
+    private GameObject tripleShotPrefab;
+
     private bool stopSpawning = false;
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(SpawnRoutine());
+        StartCoroutine(SpawnEnemyRoutine());
+        StartCoroutine(SpawnTripleShotRoutine());
 
     }
 
@@ -27,7 +31,7 @@ public class SpawnManager : MonoBehaviour
     //CreateAssetMenuAttribute a coroutine of type IEnumerator -- Yield Events
     //while loop
 
-    IEnumerator SpawnRoutine()
+    IEnumerator SpawnEnemyRoutine()
     {
         // while loopInfinite loop()
         //Instantiate enemy prefab
@@ -37,7 +41,17 @@ public class SpawnManager : MonoBehaviour
             Vector3 posToSpawn = new Vector3(Random.Range(-10f, 10f), 7, 0);
             GameObject newEnemy = Instantiate(enemyPrefab, posToSpawn, Quaternion.identity);
             newEnemy.transform.parent = enemyContainer.transform;
-            yield return new WaitForSeconds(1.0f);
+            yield return new WaitForSeconds(3.0f);
+
+        }
+
+    }
+
+    IEnumerator SpawnTripleShotRoutine(){
+        while (stopSpawning ==false){
+            Vector3 postToSpawn = new Vector3(Random.Range(-10f, 10f), 7, 0);
+            Instantiate(tripleShotPrefab, postToSpawn, Quaternion.identity);
+            yield return new WaitForSeconds(Random.Range(3.0f, 8.0f));
 
         }
 
