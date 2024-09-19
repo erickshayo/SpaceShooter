@@ -9,7 +9,7 @@ public class SpawnManager : MonoBehaviour
     [SerializeField]
     private GameObject enemyContainer;
     [SerializeField]
-    private GameObject tripleShotPrefab;
+    private GameObject[] powerUps;
 
     private bool stopSpawning = false;
     // Start is called before the first frame update
@@ -17,6 +17,7 @@ public class SpawnManager : MonoBehaviour
     {
         StartCoroutine(SpawnEnemyRoutine());
         StartCoroutine(SpawnTripleShotRoutine());
+        
 
     }
 
@@ -52,7 +53,8 @@ public class SpawnManager : MonoBehaviour
         while (stopSpawning == false)
         {
             Vector3 postToSpawn = new Vector3(Random.Range(-10f, 10f), 7, 0);
-            Instantiate(tripleShotPrefab, postToSpawn, Quaternion.identity);
+            int randomPowerUp = Random.Range(0, powerUps.Length - 1);
+            Instantiate(powerUps[randomPowerUp], postToSpawn, Quaternion.identity);
             yield return new WaitForSeconds(Random.Range(3.0f, 8.0f));
 
         }
