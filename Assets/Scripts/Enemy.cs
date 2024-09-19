@@ -24,7 +24,7 @@ public class Enemy : MonoBehaviour
             transform.position = new Vector3(randomX, 7, 0);
         }
 
-        
+
     }
 
     private void OnTriggerEnter2D(Collider2D other)

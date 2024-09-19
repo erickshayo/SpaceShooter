@@ -6,7 +6,7 @@ using UnityEngine;
 public class Laser : MonoBehaviour
 {
     public float speed = 8f;
-    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,7 +20,8 @@ public class Laser : MonoBehaviour
 
         if (transform.position.y > 8)
         {
-            if(transform.parent != null){
+            if (transform.parent != null)
+            {
                 Destroy(transform.parent.gameObject);
             }
 
